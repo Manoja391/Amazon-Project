@@ -93,6 +93,7 @@ const handleLoginBtn = async() => {
                                 <strong>Password</strong>
                                 <input type="password" className='form-control' placeholder='password' onChange={updatePassword} />
                                 <div className='text-danger'>{loginErrors.password==true && ERROR_MESSAGES.SHORT_PASSWORD}</div>
+                                <div><a href='/ResetPassword'>Forgot Password?</a></div>
                             </div>
                             <div className='mt-4'>
                                 <p>To verify your number, we will send you text messages with a temp code.</p>

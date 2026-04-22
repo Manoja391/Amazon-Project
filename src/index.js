@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import Login from './shared/Login';
 import Signup from './shared/CreateAccount';
+import ResetPassword from './shared/ResetPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
       <Routes>
         <Route path='Login' Component={Login} > </Route>
         <Route path='Signup' Component={Signup} > </Route>
+        <Route path='ResetPassword' Component={ResetPassword} > </Route>
         <Route path='/' Component={Home} > </Route>
       </Routes>
     </BrowserRouter>
