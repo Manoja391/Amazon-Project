@@ -7,11 +7,11 @@ import { searchSuggestionsApi } from "../services/searchservice";
 function NavBar(){
 
     let [showSearchDropdown, setShowSearchDropdown] = useState(false);
-    let [searchWord, setSearchWord] = useState("");
+    
     let [searchSuggestions, setSearchSuggestions] = useState([]);
 
     const SearchHandler = async (e) => {
-        setSearchWord(e.target.value)
+      
         let keyword = e.target.value;
         if(keyword.length>0) {
             
@@ -48,8 +48,9 @@ function NavBar(){
 
     const handleSuggestionClick = (suggestion) => {
         //setSearchWord(suggestion)
-        console.log("Clicked suggestion:", suggestion);
-        setShowSearchDropdown(false)
+        //console.log("Clicked suggestion:", suggestion);
+        //setShowSearchDropdown(false)
+            window.location.href=`/product-search?keyword=${suggestion}`
     }
 
     return( 

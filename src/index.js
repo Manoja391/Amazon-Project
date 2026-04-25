@@ -10,6 +10,7 @@ import Login from './shared/Login';
 import Signup from './shared/CreateAccount';
 import ResetPassword from './shared/ResetPassword';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Search from './products/Search';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path='Signup' Component={Signup} > </Route>
         <Route path='ResetPassword' Component={ResetPassword} > </Route>
         <Route path='/' Component={Home} > </Route>
+        <Route path='/product-search' Component={Search} > </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
