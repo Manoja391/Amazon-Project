@@ -9,6 +9,7 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import Login from './shared/Login';
 import Signup from './shared/CreateAccount';
 import ResetPassword from './shared/ResetPassword';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -4,6 +4,7 @@ import amazonlogo from '../images/amazon-logo.png';
 import { IsEmailValid } from "../Utilities/Utils";
 import { signinAPi } from "../services/authservice";
 import { CheckUserLoginStatus } from "../Utilities/Utils";
+import { Link } from "react-router-dom";
 
 function Login()
 {
@@ -93,7 +94,7 @@ const handleLoginBtn = async() => {
                                 <strong>Password</strong>
                                 <input type="password" className='form-control' placeholder='password' onChange={updatePassword} />
                                 <div className='text-danger'>{loginErrors.password==true && ERROR_MESSAGES.SHORT_PASSWORD}</div>
-                                <div><a href='/ResetPassword'>Forgot Password?</a></div>
+                                <div><Link to='/ResetPassword'>Forgot Password?</Link></div>
                             </div>
                             <div className='mt-4'>
                                 <p>To verify your number, we will send you text messages with a temp code.</p>

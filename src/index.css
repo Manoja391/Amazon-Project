@@ -10,3 +10,24 @@
   width: 150px;
   height: auto;
 }
+
+.search-dropdown{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  z-index: 1000;
+}
+
+.suggestion-item{
+  padding: 8px;
+  cursor: pointer;
+  height: 35px;
+  font-size: 14px;
+}
+
+.suggestion-item:hover{
+  background-color: #f0f0f0;
+}
