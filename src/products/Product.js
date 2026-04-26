@@ -9,7 +9,9 @@ function Product({data}) {
             <div className="card mb-3"> 
                 <div className="row">
                         <div className="col-4">
-                            <img src={data.thumbnail} className="img-fluid rounded-start amazon-pointer" alt="..." onClick={e => handleProductClick()} />
+                            <a href={"/product/" + data.id}>
+                            <img src={data.thumbnail} className="img-fluid rounded-start amazon-pointer" alt="..." />
+                            </a>
                         </div>
                         <div className="col-8">
                             <div className="card-body">
