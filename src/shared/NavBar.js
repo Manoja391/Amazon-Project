@@ -107,6 +107,11 @@ function NavBar(){
                                 
                                 </ul>
                             }
+                             { IsUserLoggedIn == true &&
+                                <ul className="dropdown-menu">
+                                        <li><Link className="dropdown-item" to="/Addresses" >Manage Address</Link></li>
+                                    </ul>
+                            }
                             { IsUserLoggedIn == true &&
                                 <ul className="dropdown-menu">
                                         <li><Link className="dropdown-item" to="/Logout" onClick={e=>logOutUser()}>Logout</Link></li>
