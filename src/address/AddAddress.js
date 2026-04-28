@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function AddAddress() {
         let [AddressData, setAddressData] = useState({
@@ -12,6 +13,30 @@ function AddAddress() {
             latlong:""
         });
 
+        const getLocationData = async (lat,long) => {
+            try {
+                console.log("Fetching location data for latlong:", lat,long);
+                const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=AIzaSyBxjYFqq8swhMenZlv8AdIjXYeMPKFfJ18');
+                const data = response.data; // Parse the JSON response
+                console.log("Location data from Google Maps API:", data);
+                if (data.status === "OK" && data.results.length > 0) {
+                    const addressComponents = data.results[0].address_components;
+                    const city = addressComponents.find(component => component.types.includes("locality"))?.long_name || "";
+                    const state = addressComponents.find(component => component.types.includes("administrative_area_level_1"))?.long_name || "";
+                    const country = addressComponents.find(component => component.types.includes("country"))?.long_name || "";
+                    const pincode = addressComponents.find(component => component.types.includes("postal_code"))?.long_name || "";
+                    setAddressData({...AddressData, city, state, country, pincode})
+                } else {
+                    console.error("No results found for the given latitude and longitude.");
+                    alert("Unable to fetch address details from your location.")
+                }
+            } catch (error) {
+                console.error("Error fetching location data:", error);
+                alert("An error occurred while fetching address details. Please try again.")
+            }
+        }
+        // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyBxjYFqq8swhMenZlv8AdIjXYeMPKFfJ18
+        // AIzaSyBxjYFqq8swhMenZlv8AdIjXYeMPKFfJ18
         const getUserLatLong = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -20,6 +45,8 @@ function AddAddress() {
                         const long = position.coords.longitude;
                         setAddressData({...AddressData, latlong: `${lat},${long}`})
                         console.log("User's latitude and longitude:", lat, long);
+                        getLocationData(lat,long);
+
                     },
                     (error) => {
                         console.error("Error getting user's location:", error);
@@ -34,7 +61,7 @@ function AddAddress() {
 
     return(
         <div>
-            <div className="container">
+            <div className="card shadow p-3 mb-5 bg-body rounded">
                 <div className="row">
                         <form>
                             <div className="mb-3">
@@ -70,7 +97,7 @@ function AddAddress() {
                             </div>
                             
                             
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-success">Submit</button>
                         </form>
                     </div>
                     
