@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { addressAddApi } from "../services/addressservice";
 
-function AddAddress() {
+
+function AddAddress({ addnewaddress }) {
         let [AddressData, setAddressData] = useState({
             name: "",
             mobile: "",
@@ -51,7 +53,7 @@ function AddAddress() {
                     (error) => {
                         console.error("Error getting user's location:", error);
                         alert("Unable to fetch your location. Please allow location access and try again.")
-                    }
+                    } 
                 );
             } else {
                 console.error("Geolocation is not supported by this browser.");
@@ -59,13 +61,28 @@ function AddAddress() {
             }
         }
 
+        
+        const AddAddressHandler = async(e) => {
+            console.log("SUBMIT FIRED"); 
+             e.preventDefault(); 
+
+            let apiresponse = await addressAddApi(AddressData);
+            addnewaddress(apiresponse.data.data);
+
+            console.log("API response from adding address:" + apiresponse.data.message);
+
+
+         }
+
+        
+
     return(
         <div>
             <div className="card shadow p-3 mb-5 bg-body rounded">
                 <div className="row">
-                        <form>
+                        <form onSubmit={AddAddressHandler}>
                             <div className="mb-3">
-                                <button type="button" className="btn btn-primary" onClick={e => getUserLatLong()}><i class="bi bi-crosshair"></i> Use my Location</button>
+                                <button type="button" className="btn btn-primary" onClick={e => getUserLatLong()}><i className="bi bi-crosshair"></i> Use my Location</button>
                                 </div>
                             <div className="mb-3">
                                 <label className="form-label">Name</label>

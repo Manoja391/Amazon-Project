@@ -12,3 +12,14 @@ export const CheckUserLoginStatus = () => {
         return false;
     }
 }
+
+export const GetLoggedInUserID = () => {
+    let userData = localStorage.getItem('UserData');
+    if(userData != undefined) {
+        userData=JSON.parse(userData);
+        return userData.id;
+    }
+    else{   
+        return null;
+    }
+} 
