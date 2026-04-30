@@ -14,6 +14,8 @@ import Search from './products/Search';
 import Singleproduct from './products/Singleproduct';
 import Addresses from './address/Addresses';
 import AddAddress from './address/AddAddress';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -3,7 +3,9 @@ import axios from "axios";
 import { addressAddApi } from "../services/addressservice";
 
 
-function AddAddress({ addnewaddress }) {
+function AddAddress({ addnewaddress, editAddress }) {
+
+    
         let [AddressData, setAddressData] = useState({
             name: "",
             mobile: "",
@@ -14,6 +16,14 @@ function AddAddress({ addnewaddress }) {
             pincode: "",
             latlong:""
         });
+
+        if (editAddress) {
+            
+        console.log("editaddress prop in AddAddress component:", editAddress);
+        setAddressData({name: editAddress.name, mobile: editAddress.mobile, addressLine1: editAddress.flat, city: editAddress.city, state: editAddress.state, country: editAddress.country, pincode: editAddress.pincode, latlong: editAddress.latlong})
+
+
+        }
 
         const getLocationData = async (lat,long) => {
             try {

@@ -16,7 +16,7 @@ export const addressViewAPi = async (data) => {
 
 export const addressDeleteApi = async (data) => {
 
-    return await axiosinstance.delete(API_ENDPOINTS.ADDRESS_DELETE, data);
+    return await axiosinstance.post(API_ENDPOINTS.ADDRESS_DELETE, data);
  
 }
 

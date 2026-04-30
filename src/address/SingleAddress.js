@@ -1,4 +1,4 @@
-const SingleAddress = ({ address , deleteAddress }) => {
+const SingleAddress = ({ address , deleteAddress, editAddress }) => {
     console.log("Rendering SingleAddress component with address:", address);
     return (
         
@@ -10,7 +10,7 @@ const SingleAddress = ({ address , deleteAddress }) => {
                     <p className="card-text"><small className="text-muted">Mobile: {address.mobile}</small></p>
                 </div>
                 <div className="card-footer">
-                    <button className="btn btn-primary">Edit</button>
+                    <button className="btn btn-primary" onClick={() => editAddress(address)}>Edit</button>
                     <button className="btn btn-danger" onClick={() => deleteAddress(address.id)}>Delete</button>
                 </div>
             </div>

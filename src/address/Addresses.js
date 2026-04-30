@@ -3,8 +3,9 @@ import NavBar from "../shared/NavBar";
 import AddAddress from "./AddAddress";
 import { useEffect, useState } from "react";
 import { GetLoggedInUserID } from "../Utilities/Utils";
-import { addressViewAPi } from "../services/addressservice";
+import { addressViewAPi, addressDeleteApi } from "../services/addressservice";
 import SingleAddress from "./SingleAddress";
+
 
 function Addresses() {
 
@@ -35,12 +36,21 @@ function Addresses() {
         
     }   
 
-    const deleteAddress = (addressId) => {
+    const deleteAddress = async (addressId) => {
         // Implement delete functionality here
         let tmpData = addressData
         tmpData = tmpData.filter(address => address.id!== addressId);
         setAddressData(tmpData); 
         console.log("Delete address with ID:", addressId);
+        await addressDeleteApi({id: addressId});
+    }
+
+    const editAddress = (address) => {
+        // Implement edit functionality here
+        console.log("Edit address with ID:", address.id);
+        let tmpData = addressData;
+        tmpData = addressData.filter(data => data.id === address.id);
+        setAddressData(tmpData);
     }
 
     return(
@@ -55,7 +65,7 @@ function Addresses() {
                              <button className="btn btn-secondary" onClick={e=>setShowAddAddressForm(true)}>Add Address</button>
                              <div className="mt-3">
                                 {
-                                    showAddAddressForm == true && <AddAddress addnewaddress={addnewaddress}/>
+                                    showAddAddressForm == true && <AddAddress addnewaddress={addnewaddress} editAddress={editAddress}/>
                                 }
                              </div>
                         </div>
@@ -67,7 +77,7 @@ function Addresses() {
                     <div className="row">
                                     {
                                         addressData.map ((address,i) => (
-                                            <SingleAddress address={address} key={i} deleteAddress={deleteAddress}/>
+                                            <SingleAddress address={address} key={i} deleteAddress={deleteAddress} editAddress={editAddress}/>
                                         ))
 
                                     }
